@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from scrapy import Request, Spider
+from scrapy import Spider
 
 
 class TudoGostosoSpider(Spider):
