@@ -15,6 +15,10 @@ I recommend using pyenv to run the application and use Python version 3.7, but t
   ```shell
    $ make up 
   ```
+3) You need to create the .env file:
+
+    URL=**localhost**<br>
+    DATABASE=**scrapy_tudo_gostoso**
 # All ready?
 
 Run the command:
