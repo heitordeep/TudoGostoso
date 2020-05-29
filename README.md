@@ -1,10 +1,11 @@
 # TudoGostoso
-Developed in Scrapy with Mongodb.
+Scraping with Scrapy and Mongodb.
 
 **Vegan and vegetarian recipes**
 
 # Before you start:
-I recommend to use pyenv to run the application and to use version of Python 3.7 , but it's your preference :D
+I recommend using pyenv to run the application and use Python version 3.7, but the preference is yours :D
+
 
 1) Installation requirements:
   ```shell
@@ -20,11 +21,12 @@ Run the command:
   ```shell
    $ make run
   ```
-The data will be stored in mongodb container.
+The data will be stored in the mongodb container.
+
 
 # How to access the container:
 
-Now, run the command to get docker container id:
+Now, run the command to get the docker container id:
   ```shell
    $ make ps-a
   ``` 
