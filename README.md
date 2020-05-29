@@ -1,6 +1,8 @@
 # TudoGostoso
 Developed in Scrapy with Mongodb.
 
+**Vegan and vegetarian recipes**
+
 # Before you start:
 I recommend to use pyenv to run the application and to use version of Python 3.7 , but it's your preference :D
 
