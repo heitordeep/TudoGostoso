@@ -28,25 +28,24 @@ clean:  ## Clean python bytecodes, optimized files, cache, coverage...
 # ------ Docker ------ 
 
 ps: ## List running containers
-	sudo docker ps
+	docker ps
 
-ps-a: ## List all running containers
-	sudo docker ps -a
+ps-a: ## List all containers
+	docker ps -a
+
+start: ## Start container
+	docker start $(id)
 
 exec: ## Attach to container
-	sudo docker exec -it $(id) bash
+	docker exec -it $(id) bash
 
 up: ## Run containers
-	sudo docker-compose up -d
+	docker-compose up -d
 
 
 # ------ Run Crawler ------ 
 
 run: ## Run crawler. Save on mongodb
 	scrapy crawl tudo_gostoso
-	
-run-json: ## Run crawler. Extract data to json files, for example: make run-json name=file / Result: file.json
-	scrapy crawl tudo_gostoso -o $(name).json
 
-# ------ GitHub ------
 
