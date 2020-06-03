@@ -17,10 +17,7 @@ I recommend using pyenv to run the application and use Python version 3.7, but t
     ```shell
     $ make up 
     ```
-    
-  ```shell
-   $ make up 
-  ```
+
 
 3) You need to create the .env file:
 
