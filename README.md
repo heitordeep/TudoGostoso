@@ -13,9 +13,11 @@ I recommend using pyenv to run the application and use Python version 3.7, but t
     $ make requirements 
     ```
 2) Run containers:
+
     ```shell
     $ make up 
     ```
+
 3) You need to create the .env file:
 
     URL=**localhost**<br>

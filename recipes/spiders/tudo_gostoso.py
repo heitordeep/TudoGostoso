@@ -1,3 +1,5 @@
+from re import IGNORECASE, compile
+
 from scrapy import Spider
 
 
@@ -9,7 +11,9 @@ class TudoGostosoSpider(Spider):
         'https://www.tudogostoso.com.br/receitas-vegetarianas',
     ]
 
-    denied_words = ['ovo', 'ovos', 'porco']
+    denied_words = compile(
+        '.*(ovos?|porco|bovina|frango|peixe|acém|filé).*', IGNORECASE
+    )
 
     def parse(self, response):
         link_recipe = response.css(
@@ -35,13 +39,8 @@ class TudoGostosoSpider(Spider):
                 '.e-instructions p::text'
             ).getall()
 
-        verification_denied_words = []
-
-        for ingredient in ingredients:
-            verification_denied_words = ingredient.split()
-            for word in verification_denied_words:
-                if self.denied_words.count(word):
-                    return None
+        if self.denied_words.match(' '.join(ingredients)):
+            return
 
         title = response.css('.recipe-title h1::text').get().strip()
         image = response.css('.pic::attr(src)').getall()
