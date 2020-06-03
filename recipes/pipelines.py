@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 import pymongo
 
 
-class ReceitasPipeline:
+class MongodbPipeline:
 
     collection_name = 'tudo_gostoso'
 

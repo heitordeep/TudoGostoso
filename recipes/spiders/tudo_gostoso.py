@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+from re import IGNORECASE, compile
+
 from scrapy import Spider
 
 
@@ -9,6 +10,10 @@ class TudoGostosoSpider(Spider):
         'https://www.tudogostoso.com.br/busca?q=vegano',
         'https://www.tudogostoso.com.br/receitas-vegetarianas',
     ]
+
+    denied_words = compile(
+        '.*(ovos?|porco|bovina|frango|peixe|acém|filé).*', IGNORECASE
+    )
 
     def parse(self, response):
         link_recipe = response.css(
@@ -23,13 +28,6 @@ class TudoGostosoSpider(Spider):
         yield response.follow(f'{self.default_domain}{pagination}', self.parse)
 
     def parse_vegan_and_veggie(self, response):
-        title = response.css('.recipe-title h1::text').get().strip()
-        image = response.css('.pic::attr(src)').getall()
-        preparation = (
-            response.css('.dt-duration::text').get().strip().replace('\n', ' ')
-        )
-        favorite = response.css('.like .num::text').get().strip()
-        author = response.css('.author-name span::text').get().strip()
         ingredients = response.css('.p-ingredient::text').getall()
         method_of_preparation = response.css(
             '.e-instructions span::text'
@@ -40,6 +38,18 @@ class TudoGostosoSpider(Spider):
             method_of_preparation = response.css(
                 '.e-instructions p::text'
             ).getall()
+
+        if self.denied_words.match(' '.join(ingredients)):
+            return
+
+        title = response.css('.recipe-title h1::text').get().strip()
+        image = response.css('.pic::attr(src)').getall()
+        image = [i.split('?').pop(0) for i in image]
+        preparation = (
+            response.css('.dt-duration::text').get().strip().replace('\n', ' ')
+        )
+        favorite = response.css('.like .num::text').get().strip()
+        author = response.css('.author-name span::text').get().strip()
 
         yield {
             'title': title,

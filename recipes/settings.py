@@ -1,26 +1,25 @@
-# -*- coding: utf-8 -*-
-
 # Scrapy settings for receitas project
+
 from decouple import config
 
-BOT_NAME = 'receitas'
+BOT_NAME = 'recipes'
 
-SPIDER_MODULES = ['receitas.spiders']
-NEWSPIDER_MODULE = 'receitas.spiders'
+SPIDER_MODULES = ['recipes.spiders']
+NEWSPIDER_MODULE = 'recipes.spiders'
 FEED_EXPORT_ENCODING = 'utf-8'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'receitas'
+USER_AGENT = 'recipes'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
 # Configure a delay for requests for the same website (default: 0)
-DOWNLOAD_DELAY = 0.25
+DOWNLOAD_DELAY = 0.35
 
 # Configure item pipelines
 ITEM_PIPELINES = {
-    'receitas.pipelines.ReceitasPipeline': 0,
+    'recipes.pipelines.MongodbPipeline': 0,
 }
 
 # MongoDB
